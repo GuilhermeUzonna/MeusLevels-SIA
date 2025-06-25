@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://4i7h02o7ipve"]
+
+[ext_resource type="Texture2D" uid="uid://4qef8n6a8tr7" path="res://Scenes/Gadgets/Ventilator/Textures/single_particle.png" id="1_robnf"]
+[ext_resource type="Script" path="res://Scenes/Characters/Player/DeathParticles/death_particles.gd" id="1_valed"]
+
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2xk6l"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(4, 7, 1)
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 75.0
+gravity = Vector3(0, 196, 0)
+
+[node name="death_particles" type="GPUParticles2D"]
+texture_filter = 1
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_2xk6l")
+texture = ExtResource("1_robnf")
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+script = ExtResource("1_valed")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

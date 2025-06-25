@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://curi6fyh3qyb6"]
+
+[ext_resource type="Script" path="res://Source/PauseMenu/Options/options.gd" id="1_1duus"]
+[ext_resource type="PackedScene" uid="uid://bct0ue1275mx2" path="res://Source/PauseMenu/PauseMenuSlider/pause_menu_slider.tscn" id="1_h50cs"]
+[ext_resource type="PackedScene" uid="uid://s0lqj25qsa0c" path="res://Source/PauseMenu/PauseMenuButton/pause_menu_button.tscn" id="2_r64qu"]
+[ext_resource type="PackedScene" uid="uid://butgnwfcpj5ls" path="res://Source/PauseMenu/PauseMenuToggle/pause_menu_toggle.tscn" id="3_mynm6"]
+
+[node name="Options" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+script = ExtResource("1_1duus")
+
+[node name="Music" parent="." instance=ExtResource("1_h50cs")]
+layout_mode = 2
+title = "MÚSICA"
+
+[node name="Sounds" parent="." instance=ExtResource("1_h50cs")]
+layout_mode = 2
+title = "SONS"
+
+[node name="Timer" parent="." instance=ExtResource("3_mynm6")]
+layout_mode = 2
+title = "CRONÔMETRO"
+
+[node name="Back" parent="." instance=ExtResource("2_r64qu")]
+layout_mode = 2
+title = "VOLTAR"
+
+[connection signal="selected" from="Back" to="." method="_on_back_selected"]

@@ -1,0 +1,139 @@
+[gd_scene load_steps=9 format=3 uid="uid://di7eobq4hrmcf"]
+
+[ext_resource type="PackedScene" uid="uid://0qkc0k0b04ey" path="res://Scenes/Menus/WorldSelection/WorldIcon/world_icon.tscn" id="1_h84lf"]
+[ext_resource type="Script" path="res://Scenes/Menus/WorldSelection/world_selection.gd" id="1_qbk0t"]
+[ext_resource type="Shader" path="res://Assets/Resources/Shaders/circle_transition.gdshader" id="3_nv2gh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_euko1"]
+shader = ExtResource("3_nv2gh")
+shader_parameter/circle_size = 0.0
+shader_parameter/screen_width = 320.0
+shader_parameter/screen_height = 240.0
+
+[sub_resource type="Animation" id="Animation_gskqb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_gtocc"]
+resource_name = "transition_in"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_fsp3w"]
+resource_name = "transition_out"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2tsyn"]
+_data = {
+"RESET": SubResource("Animation_gskqb"),
+"transition_in": SubResource("Animation_gtocc"),
+"transition_out": SubResource("Animation_fsp3w")
+}
+
+[node name="WorldSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qbk0t")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 992.0
+offset_bottom = 240.0
+color = Color(0, 0.816667, 1, 1)
+
+[node name="Transition" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_euko1")
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 240.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2tsyn")
+}
+autoplay = "transition_in"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_right = 605.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 38
+alignment = 2
+
+[node name="WorldIcon" parent="HBoxContainer" instance=ExtResource("1_h84lf")]
+layout_mode = 2
+title = "PRÓLOGO"
+
+[node name="WorldIcon2" parent="HBoxContainer" instance=ExtResource("1_h84lf")]
+layout_mode = 2
+title = "CAMINHO ESPINHOSO"
+world_color = Color(0.923434, 0.510562, 1, 1)
+
+[node name="WorldIcon3" parent="HBoxContainer" instance=ExtResource("1_h84lf")]
+layout_mode = 2
+title = "EQUILÍBRIO"
+world_color = Color(1.58831e-06, 0.62489, 0.512183, 1)
+
+[node name="WorldIcon4" parent="HBoxContainer" instance=ExtResource("1_h84lf")]
+layout_mode = 2
+title = "SEI LA"
+world_color = Color(0.793712, 0.613102, 0.124821, 1)
+
+[node name="WorldIcon5" parent="HBoxContainer" instance=ExtResource("1_h84lf")]
+layout_mode = 2
+
+[node name="WorldIcon6" parent="HBoxContainer" instance=ExtResource("1_h84lf")]
+layout_mode = 2
+
+[node name="WorldIcon7" parent="HBoxContainer" instance=ExtResource("1_h84lf")]
+layout_mode = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(160, 120)
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://bslrfmrdcalai"]
+
+[ext_resource type="Script" path="res://Scenes/Gadgets/TiltingPlatform/TiltingPlatformCell/tilting_platform_cell.gd" id="1_wf8lb"]
+[ext_resource type="Texture2D" uid="uid://bmryk4iyjjhjp" path="res://Assets/Resources/Tiles/Textures/base_tilemap.png" id="2_fnn3f"]
+
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_whhs8"]
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k4aby"]
+size = Vector2(8, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D"]
+texture_filter = 1
+shape = SubResource("RectangleShape2D_whhs8")
+script = ExtResource("1_wf8lb")
+
+[node name="center" type="Sprite2D" parent="."]
+texture = ExtResource("2_fnn3f")
+region_enabled = true
+region_rect = Rect2(24, 0, 8, 8)
+
+[node name="left" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_fnn3f")
+region_enabled = true
+region_rect = Rect2(16, 0, 8, 8)
+
+[node name="right" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_fnn3f")
+region_enabled = true
+region_rect = Rect2(32, 0, 8, 8)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -4.25)
+shape = SubResource("RectangleShape2D_k4aby")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

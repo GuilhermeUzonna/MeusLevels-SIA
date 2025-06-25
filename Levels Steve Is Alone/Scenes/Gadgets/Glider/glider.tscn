@@ -1,0 +1,92 @@
+[gd_scene load_steps=14 format=3 uid="uid://bbxuui0qs4cus"]
+
+[ext_resource type="Script" path="res://Scenes/Gadgets/Glider/glider.gd" id="1_idsni"]
+[ext_resource type="Texture2D" uid="uid://cc3ibp2ailjet" path="res://Scenes/Gadgets/Glider/Textures/glider_sheet.png" id="2_spo3m"]
+[ext_resource type="Texture2D" uid="uid://c4td8ucy4eebk" path="res://Scenes/Gadgets/Glider/Textures/glider_background.png" id="2_titch"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xfgfq"]
+size = Vector2(6, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_376u4"]
+atlas = ExtResource("2_titch")
+region = Rect2(0, 0, 12, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dacy"]
+atlas = ExtResource("2_titch")
+region = Rect2(12, 0, 12, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iurk4"]
+atlas = ExtResource("2_titch")
+region = Rect2(24, 0, 12, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5f2r"]
+atlas = ExtResource("2_titch")
+region = Rect2(36, 0, 12, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhlnx"]
+atlas = ExtResource("2_titch")
+region = Rect2(48, 0, 12, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g78jy"]
+animations = [{
+"frames": [{
+"duration": 15.0,
+"texture": SubResource("AtlasTexture_376u4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8dacy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iurk4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5f2r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhlnx")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 15.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5sla"]
+atlas = ExtResource("2_spo3m")
+region = Rect2(0, 0, 18, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_thpeh"]
+atlas = ExtResource("2_spo3m")
+region = Rect2(18, 0, 18, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_anokw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5sla")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_thpeh")
+}],
+"loop": false,
+"name": &"flap",
+"speed": 8.0
+}]
+
+[node name="Glider" type="Area2D"]
+texture_filter = 1
+script = ExtResource("1_idsni")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xfgfq")
+
+[node name="Background" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_g78jy")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.766471
+
+[node name="Wings" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_anokw")
+animation = &"flap"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

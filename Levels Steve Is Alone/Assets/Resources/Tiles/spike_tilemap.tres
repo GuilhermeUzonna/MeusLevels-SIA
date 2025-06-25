@@ -1,0 +1,15 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bh0iuy5y5wirf"]
+
+[ext_resource type="Texture2D" uid="uid://cpgtsnc6rfckl" path="res://Assets/Resources/Tiles/Textures/spikes.png" id="1_psgef"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hhhl0"]
+texture = ExtResource("1_psgef")
+texture_region_size = Vector2i(8, 8)
+0:0/0 = 0
+1:1/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+
+[resource]
+tile_size = Vector2i(8, 8)
+sources/0 = SubResource("TileSetAtlasSource_hhhl0")

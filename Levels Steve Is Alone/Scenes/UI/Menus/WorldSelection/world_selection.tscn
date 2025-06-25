@@ -1,0 +1,240 @@
+[gd_scene load_steps=20 format=3 uid="uid://di7eobq4hrmcf"]
+
+[ext_resource type="PackedScene" uid="uid://0qkc0k0b04ey" path="res://Scenes/UI/Menus/WorldSelection/WorldIcon/world_icon.tscn" id="1_h84lf"]
+[ext_resource type="Script" path="res://Scenes/UI/Menus/WorldSelection/world_selection.gd" id="1_qbk0t"]
+[ext_resource type="Shader" path="res://Assets/Resources/Shaders/circle_transition.gdshader" id="3_nv2gh"]
+[ext_resource type="Shader" path="res://Assets/Resources/Shaders/shadow_shader.gdshader" id="4_bgjxc"]
+[ext_resource type="PackedScene" uid="uid://cq5lx1lefjnkq" path="res://Scenes/UI/ButtonPrompt/button_prompt.tscn" id="5_smj07"]
+[ext_resource type="Texture2D" uid="uid://b2tcu13pb17os" path="res://Scenes/UI/ButtonPrompt/Textures/jump_sheet.png" id="6_qohl2"]
+[ext_resource type="Texture2D" uid="uid://lgqj4pk1etfu" path="res://Scenes/UI/ButtonPrompt/Textures/return_sheet.png" id="7_lje2i"]
+[ext_resource type="Texture2D" uid="uid://cui61y5mh3yr5" path="res://Scenes/UI/Menus/WorldSelection/Textures/coin1.png" id="7_wwkgt"]
+[ext_resource type="Texture2D" uid="uid://calryguqktqhc" path="res://Scenes/UI/Menus/WorldSelection/Textures/coin2.png" id="9_kxmjr"]
+[ext_resource type="FontFile" uid="uid://bhm2ik3ij1rpj" path="res://Assets/Fonts/public_pixel.otf" id="9_wffyd"]
+
+[sub_resource type="Animation" id="Animation_gskqb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D/Transition:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_gtocc"]
+resource_name = "transition_in"
+length = 0.7
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D/Transition:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_fsp3w"]
+resource_name = "transition_out"
+length = 0.7
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D/Transition:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2tsyn"]
+_data = {
+"RESET": SubResource("Animation_gskqb"),
+"transition_in": SubResource("Animation_gtocc"),
+"transition_out": SubResource("Animation_fsp3w")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vvvai"]
+shader = ExtResource("4_bgjxc")
+shader_parameter/pixel_offset = Vector2(1, -1)
+shader_parameter/shadow_color = null
+
+[sub_resource type="Animation" id="Animation_1paix"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_wwkgt")]
+}
+
+[sub_resource type="Animation" id="Animation_hcqdm"]
+resource_name = "coin_idle"
+length = 0.5
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("7_wwkgt"), ExtResource("9_kxmjr")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_38pt2"]
+_data = {
+"RESET": SubResource("Animation_1paix"),
+"coin_idle": SubResource("Animation_hcqdm")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_euko1"]
+shader = ExtResource("3_nv2gh")
+shader_parameter/circle_size = 0.0
+shader_parameter/screen_width = 320.0
+shader_parameter/screen_height = 240.0
+
+[node name="WorldSelection" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qbk0t")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 992.0
+offset_bottom = 240.0
+color = Color(0, 0.816667, 1, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2tsyn")
+}
+autoplay = "transition_in"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 110.0
+offset_right = 655.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 38
+
+[node name="WorldIcon" parent="HBoxContainer" instance=ExtResource("1_h84lf")]
+layout_mode = 2
+title = "PRÓLOGO"
+world_path = "res://Scenes/Worlds/PrologueDEMO/LevelSelection/demo_level_selection.tscn"
+folder_path = "res://Scenes/Worlds/PrologueDEMO/Levels/"
+song = "prologue"
+
+[node name="WorldIcon2" parent="HBoxContainer" instance=ExtResource("1_h84lf")]
+layout_mode = 2
+locked = true
+price = 1
+title = "DESAFIOS"
+world_color = Color(0.923434, 0.510562, 1, 1)
+world_path = "res://Scenes/Worlds/Desafios/LevelSelection/desafio_level_selection.tscn"
+folder_path = "res://Scenes/Worlds/Desafios/Levels/"
+song = "challenges"
+
+[node name="WorldIcon3" parent="HBoxContainer" instance=ExtResource("1_h84lf")]
+layout_mode = 2
+title = "EM BREVE"
+world_color = Color(0, 0, 0, 1)
+world_path = "res://Scenes/UI/Menus/WorldSelection/world_selection.tscn"
+song = "stop"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(160, 120)
+
+[node name="Shader" type="ColorRect" parent="Camera2D"]
+z_index = 2
+material = SubResource("ShaderMaterial_vvvai")
+offset_left = -160.0
+offset_top = -120.0
+offset_right = 160.0
+offset_bottom = 120.0
+
+[node name="ButtonPrompt" parent="Camera2D" instance=ExtResource("5_smj07")]
+offset_left = -156.0
+offset_top = 108.0
+offset_right = -46.0
+offset_bottom = 116.0
+input_sheet = ExtResource("6_qohl2")
+description = "SELECIONAR"
+
+[node name="ButtonPrompt2" parent="Camera2D" instance=ExtResource("5_smj07")]
+offset_left = 87.0
+offset_top = 108.0
+offset_right = 197.0
+offset_bottom = 116.0
+input_sheet = ExtResource("7_lje2i")
+description = "VOLTAR"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Camera2D"]
+offset_left = -160.0
+offset_top = -120.0
+offset_right = 152.0
+offset_bottom = -92.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Camera2D/HBoxContainer"]
+custom_minimum_size = Vector2(4, 6)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("7_wwkgt")
+
+[node name="Label" type="Label" parent="Camera2D/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_wffyd")
+theme_override_font_sizes/font_size = 8
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D/HBoxContainer"]
+libraries = {
+"": SubResource("AnimationLibrary_38pt2")
+}
+autoplay = "coin_idle"
+
+[node name="Transition" type="ColorRect" parent="Camera2D"]
+material = SubResource("ShaderMaterial_euko1")
+offset_left = -160.0
+offset_top = -120.0
+offset_right = 160.0
+offset_bottom = 120.0
+color = Color(0, 0, 0, 1)
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

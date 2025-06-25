@@ -1,0 +1,358 @@
+[gd_scene load_steps=28 format=3 uid="uid://m2bg2n07oona"]
+
+[ext_resource type="Script" path="res://Scenes/UI/Menus/MainMenu/main_menu.gd" id="1_i5u2c"]
+[ext_resource type="Shader" path="res://Assets/Resources/Shaders/shadow_shader.gdshader" id="1_okayk"]
+[ext_resource type="FontFile" uid="uid://bhm2ik3ij1rpj" path="res://Assets/Fonts/public_pixel.otf" id="2_bphw4"]
+[ext_resource type="Shader" path="res://Assets/Resources/Shaders/circle_transition.gdshader" id="4_8cusw"]
+[ext_resource type="PackedScene" uid="uid://s0lqj25qsa0c" path="res://Source/PauseMenu/PauseMenuButton/pause_menu_button.tscn" id="5_q5p5j"]
+[ext_resource type="Texture2D" uid="uid://cc3ibp2ailjet" path="res://Scenes/Gadgets/Glider/Textures/glider_sheet.png" id="6_5v6sy"]
+[ext_resource type="Texture2D" uid="uid://dcaf1l3kh7x65" path="res://Scenes/Characters/Player/Textures/player_walk_sheet.png" id="7_ed6pg"]
+[ext_resource type="PackedScene" uid="uid://cq5lx1lefjnkq" path="res://Scenes/UI/ButtonPrompt/button_prompt.tscn" id="8_xr3bk"]
+[ext_resource type="Texture2D" uid="uid://ch07emyfm0g2y" path="res://Scenes/Gadgets/Sign/Textures/jump_sheet.png" id="9_jusa2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhvyo"]
+atlas = ExtResource("6_5v6sy")
+region = Rect2(0, 0, 18, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cr2gk"]
+atlas = ExtResource("6_5v6sy")
+region = Rect2(18, 0, 18, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_avrl7"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhvyo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cr2gk")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wm6a5"]
+atlas = ExtResource("7_ed6pg")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8s05"]
+atlas = ExtResource("7_ed6pg")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k8egp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wm6a5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8s05")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f0ycu"]
+shader = ExtResource("1_okayk")
+shader_parameter/pixel_offset = Vector2(1, -1)
+shader_parameter/shadow_color = null
+
+[sub_resource type="Animation" id="Animation_2drix"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ButtonPrompt:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_t6re0"]
+resource_name = "blink"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ButtonPrompt:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_etrfs"]
+_data = {
+"RESET": SubResource("Animation_2drix"),
+"blink": SubResource("Animation_t6re0")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_08g46"]
+shader = ExtResource("4_8cusw")
+shader_parameter/circle_size = 0.0
+shader_parameter/screen_width = 320.0
+shader_parameter/screen_height = 240.0
+
+[sub_resource type="Animation" id="Animation_mrjfo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_s1xqb"]
+resource_name = "transition_in"
+length = 0.7
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_ex74f"]
+resource_name = "transition_out"
+length = 0.7
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ofr7l"]
+_data = {
+"RESET": SubResource("Animation_mrjfo"),
+"transition_in": SubResource("Animation_s1xqb"),
+"transition_out": SubResource("Animation_ex74f")
+}
+
+[sub_resource type="Animation" id="Animation_qijec"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlyingSteve:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(329, 158)]
+}
+
+[sub_resource type="Animation" id="Animation_nhyhc"]
+resource_name = "flying_intro"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlyingSteve:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(329, 158)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5xl4g"]
+_data = {
+"RESET": SubResource("Animation_qijec"),
+"flying_intro": SubResource("Animation_nhyhc")
+}
+
+[node name="MainMenu" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i5u2c")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 240.0
+color = Color(0, 0.816667, 1, 1)
+
+[node name="FlyingSteve" type="Node2D" parent="."]
+position = Vector2(329, 158)
+
+[node name="Wings" type="AnimatedSprite2D" parent="FlyingSteve"]
+sprite_frames = SubResource("SpriteFrames_avrl7")
+animation = &"new_animation"
+frame = 1
+
+[node name="Steve" type="AnimatedSprite2D" parent="FlyingSteve"]
+sprite_frames = SubResource("SpriteFrames_k8egp")
+frame = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = -18.0
+offset_right = 112.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_bphw4")
+theme_override_font_sizes/font_size = 16
+text = "STEVE IS ALONE"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = 6.0
+offset_right = 60.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_bphw4")
+theme_override_font_sizes/font_size = 8
+text = "> PRESS . TO START <"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonPrompt" parent="." instance=ExtResource("8_xr3bk")]
+layout_mode = 0
+offset_left = 139.0
+offset_top = 126.0
+offset_right = 249.0
+offset_bottom = 134.0
+input_sheet = ExtResource("9_jusa2")
+
+[node name="Shader" type="ColorRect" parent="."]
+z_index = 2
+material = SubResource("ShaderMaterial_f0ycu")
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 240.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_etrfs")
+}
+autoplay = "blink"
+
+[node name="Transition" type="ColorRect" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_08g46")
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 240.0
+color = Color(0, 0, 0, 1)
+
+[node name="transition_anims" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ofr7l")
+}
+autoplay = "transition_in"
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_top = 118.0
+offset_right = 320.0
+offset_bottom = 240.0
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="PauseMenuButton" parent="HBoxContainer" instance=ExtResource("5_q5p5j")]
+layout_mode = 2
+title = "CONTINUAR"
+
+[node name="PauseMenuButton2" parent="HBoxContainer" instance=ExtResource("5_q5p5j")]
+layout_mode = 2
+title = "NOVO JOGO"
+
+[node name="PauseMenuButton3" parent="HBoxContainer" instance=ExtResource("5_q5p5j")]
+layout_mode = 2
+title = "OPÇÕES"
+
+[node name="PauseMenuButton4" parent="HBoxContainer" instance=ExtResource("5_q5p5j")]
+layout_mode = 2
+title = "SAIR"
+
+[node name="flying_animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5xl4g")
+}
+autoplay = "flying_intro"
+
+[connection signal="animation_finished" from="transition_anims" to="." method="_on_transition_anims_animation_finished"]

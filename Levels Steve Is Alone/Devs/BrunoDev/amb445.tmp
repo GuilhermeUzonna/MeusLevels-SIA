@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://kjl84gda40cy"]
+
+[ext_resource type="PackedScene" uid="uid://b7lo3813hmu6r" path="res://Scenes/Templates/level_template.tscn" id="1_a1j8w"]
+[ext_resource type="PackedScene" uid="uid://dia7ud8a3o55p" path="res://Scenes/Gadgets/MovablePlatform/moving_platform.tscn" id="2_jtq6p"]
+
+[node name="AmbienteDeTeste" instance=ExtResource("1_a1j8w")]
+
+[node name="Player" parent="." index="3"]
+position = Vector2(0, 0)
+
+[node name="Shader" parent="." index="5"]
+z_index = 10
+
+[node name="MovingPlatform" parent="." index="6" instance=ExtResource("2_jtq6p")]
+position = Vector2(142, 180)
+displacement = Vector2(0, -100)
+duration = 3.0
+size = 1

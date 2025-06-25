@@ -1,0 +1,97 @@
+[gd_scene load_steps=15 format=3 uid="uid://c8ik7s175fmid"]
+
+[ext_resource type="Texture2D" uid="uid://dyor4q178v7cy" path="res://Scenes/Gadgets/Lock/Textures/lock_background_break.png" id="1_mu5vh"]
+[ext_resource type="Script" path="res://Scenes/Gadgets/Lock/lock.gd" id="1_v5l0c"]
+[ext_resource type="PackedScene" uid="uid://2btu18skq432" path="res://Scenes/Gadgets/Lock/Padlock/padlock.tscn" id="3_74s86"]
+[ext_resource type="PackedScene" uid="uid://ufsbefcmn7fm" path="res://Scenes/Gadgets/Lock/Key/key.tscn" id="4_6n60q"]
+[ext_resource type="Texture2D" uid="uid://0uluwoan1si8" path="res://Scenes/Gadgets/Lock/Textures/key_tracer.png" id="5_kwy53"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gyapw"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_byy34"]
+atlas = ExtResource("1_mu5vh")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qk8ge"]
+atlas = ExtResource("1_mu5vh")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4b0lx"]
+atlas = ExtResource("1_mu5vh")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gei2k"]
+atlas = ExtResource("1_mu5vh")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_to1mp"]
+atlas = ExtResource("1_mu5vh")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pijwx"]
+atlas = ExtResource("1_mu5vh")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oqc7u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_byy34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qk8ge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4b0lx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gei2k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_to1mp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pijwx")
+}],
+"loop": false,
+"name": &"break",
+"speed": 24.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sabmj"]
+size = Vector2(32, 32)
+
+[node name="Lock" type="StaticBody2D"]
+texture_filter = 1
+script = ExtResource("1_v5l0c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gyapw")
+
+[node name="Background" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_oqc7u")
+animation = &"break"
+
+[node name="Padlock" parent="." instance=ExtResource("3_74s86")]
+
+[node name="KeyDetector" type="Area2D" parent="."]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KeyDetector"]
+shape = SubResource("RectangleShape2D_sabmj")
+
+[node name="Key" parent="." instance=ExtResource("4_6n60q")]
+
+[node name="Line2D" type="Line2D" parent="."]
+texture_repeat = 2
+points = PackedVector2Array(0, 0, 0, 0, 0, 0)
+width = 3.0
+default_color = Color(1, 1, 1, 0.25098)
+texture = ExtResource("5_kwy53")
+texture_mode = 1
+sharp_limit = 0.0
+round_precision = 1
+
+[connection signal="area_entered" from="KeyDetector" to="." method="_on_key_detector_area_entered"]
+[connection signal="body_entered" from="Key" to="." method="_on_key_body_entered"]

@@ -1,0 +1,152 @@
+[gd_scene load_steps=13 format=3 uid="uid://hk4m5frymx7w"]
+
+[ext_resource type="Script" path="res://Scenes/LevelSelection/PoemSign/poem_sign.gd" id="1_gv23m"]
+[ext_resource type="FontFile" uid="uid://bhm2ik3ij1rpj" path="res://Assets/Fonts/public_pixel.otf" id="1_qmd6k"]
+[ext_resource type="Texture2D" uid="uid://caexdevunf64e" path="res://Scenes/LevelSelection/PoemSign/Textures/sign.png" id="2_tfxnr"]
+[ext_resource type="Texture2D" uid="uid://dnwmr5jaul5g4" path="res://Scenes/UI/Notifications/FriendNotification/Textures/exclamation.png" id="4_as34w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gasp7"]
+size = Vector2(4, 5)
+
+[sub_resource type="Animation" id="Animation_ojeia"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_l47hg"]
+resource_name = "fade_in"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jik6r"]
+resource_name = "fade_out"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r0mog"]
+_data = {
+"RESET": SubResource("Animation_ojeia"),
+"fade_in": SubResource("Animation_l47hg"),
+"fade_out": SubResource("Animation_jik6r")
+}
+
+[sub_resource type="Animation" id="Animation_6hxyy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3cd20"]
+resource_name = "idle"
+length = 1.5
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 0.95),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jbbbl"]
+_data = {
+"RESET": SubResource("Animation_6hxyy"),
+"idle": SubResource("Animation_3cd20")
+}
+
+[node name="PoemSign" type="Area2D"]
+texture_filter = 1
+script = ExtResource("1_gv23m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_gasp7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+texture = ExtResource("2_tfxnr")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_right = 320.0
+offset_bottom = 240.0
+color = Color(0, 0, 0, 0.752941)
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 240.0
+theme_override_fonts/font = ExtResource("1_qmd6k")
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r0mog")
+}
+
+[node name="Notification" type="Node2D" parent="."]
+visible = false
+position = Vector2(0, -13)
+
+[node name="Sprite2D" type="Sprite2D" parent="Notification"]
+texture_filter = 1
+texture = ExtResource("4_as34w")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Notification/Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_jbbbl")
+}
+autoplay = "idle"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

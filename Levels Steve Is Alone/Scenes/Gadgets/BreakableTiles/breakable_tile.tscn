@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bc6bnqni160k6"]
+
+[ext_resource type="Script" path="res://Scenes/Gadgets/BreakableTiles/breakable_tile.gd" id="1_fs5xy"]
+
+[node name="BreakableTile" type="Node2D"]
+script = ExtResource("1_fs5xy")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+texture_filter = 1

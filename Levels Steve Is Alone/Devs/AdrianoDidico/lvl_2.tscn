@@ -1,0 +1,122 @@
+[gd_scene load_steps=9 format=4 uid="uid://bk8vxmmsefa8v"]
+
+[ext_resource type="PackedScene" uid="uid://b7lo3813hmu6r" path="res://Scenes/Templates/Level/level_template.tscn" id="1_i07cx"]
+[ext_resource type="PackedScene" uid="uid://drtq85g5h0jmn" path="res://Scenes/Gadgets/Ventilator/Ventilator.tscn" id="2_o7205"]
+[ext_resource type="PackedScene" uid="uid://bbxuui0qs4cus" path="res://Scenes/Gadgets/Glider/glider.tscn" id="3_jy7d1"]
+[ext_resource type="PackedScene" uid="uid://b37malku2kgpo" path="res://Scenes/Gadgets/Spikes/Spikes.tscn" id="4_6k5fq"]
+[ext_resource type="PackedScene" uid="uid://dxlx0cgpalg0j" path="res://Scenes/Gadgets/Saw/saw.tscn" id="5_vwi6w"]
+[ext_resource type="PackedScene" uid="uid://b1xpgte3ll05u" path="res://Scenes/Gadgets/DoubleJump/double_jump.tscn" id="7_3b1n7"]
+[ext_resource type="PackedScene" uid="uid://c8ik7s175fmid" path="res://Scenes/Gadgets/Lock/lock.tscn" id="7_sx6lh"]
+[ext_resource type="PackedScene" uid="uid://cbj307ir8d10s" path="res://Scenes/Gadgets/WallJump/wall_jump.tscn" id="8_5qkq7"]
+
+[node name="lvl2" instance=ExtResource("1_i07cx")]
+
+[node name="BackgroundColor" parent="." index="0"]
+offset_right = 422.0
+offset_bottom = 242.0
+color = Color(0.118788, 0.302813, 0.527459, 1)
+
+[node name="TileMapLayer" parent="." index="1"]
+tile_map_data = PackedByteArray("AAADACEAAAACAAMAAAADACAAAAACAAIAAAADAB8AAAACAAIAAAADAB4AAAACAAIAAAADAB0AAAACAAIAAAADABwAAAACAAIAAAADABsAAAACAAEAAAACACEAAAABAAMAAAACACAAAAABAAIAAAACAB8AAAABAAIAAAACAB4AAAABAAIAAAACAB0AAAABAAIAAAACABwAAAABAAIAAAACABsAAAABAAEAAAABACEAAAABAAMAAAABACAAAAABAAIAAAABAB8AAAABAAIAAAABAB4AAAABAAIAAAABAB0AAAABAAIAAAABABwAAAABAAIAAAABABsAAAABAAEAAAAAACEAAAAAAAMAAAAAACAAAAAAAAIAAAAAAB8AAAAAAAIAAAAAAB4AAAAAAAIAAAAAAB0AAAAAAAIAAAAAABwAAAAAAAIAAAAAABsAAAAAAAEAAAAsAAEAAAACAAMAAAArAAEAAAAAAAAAAAAqAAEAAAAAAAAAAAApAAEAAAAAAAMAAAAsAAAAAAACAAEAAAArAAAAAAABAAEAAAAqAAAAAAABAAEAAAApAAAAAAAAAAEAAAA=")
+
+[node name="SpawnPoint" parent="." index="3"]
+position = Vector2(17, 206)
+
+[node name="EndPoint" parent="." index="4"]
+position = Vector2(344, 14)
+
+[node name="Ventilator1" parent="." index="6" instance=ExtResource("2_o7205")]
+position = Vector2(43, 238)
+
+[node name="Ventilator2" parent="." index="7" instance=ExtResource("2_o7205")]
+position = Vector2(66, 214)
+rotation = 0.523598
+intensity = 17
+
+[node name="Glider" parent="." index="8" instance=ExtResource("3_jy7d1")]
+position = Vector2(157, 143)
+
+[node name="Ventilator3" parent="." index="9" instance=ExtResource("2_o7205")]
+position = Vector2(76, 146)
+rotation = 1.57079
+intensity = 30
+
+[node name="Spikes" parent="." index="10" instance=ExtResource("4_6k5fq")]
+tile_map_data = PackedByteArray("AAAHAB0AAAAAAAAAAAAIAB0AAAAAAAAAAAAJAB0AAAAAAAAAAAAKAB0AAAAAAAAAAAALAB0AAAAAAAAAAAAMAB0AAAAAAAAAAAANAB0AAAAAAAAAAAAOAB0AAAAAAAAAAAAPAB0AAAAAAAAAAAAQAB0AAAAAAAAAAAARAB0AAAAAAAAAAAASAB0AAAAAAAAAAAATAB0AAAAAAAAAAAAUAB0AAAAAAAAAAAAVAB0AAAAAAAAAAAAWAB0AAAAAAAAAAAAXAB0AAAAAAAAAAAAYAB0AAAAAAAAAAAAZAB0AAAAAAAAAAAAaAB0AAAAAAAAAAAAbAB0AAAAAAAAAAAAcAB0AAAAAAAAAAAAdAB0AAAAAAAAAAAAeAB0AAAAAAAAAAAAfAB0AAAAAAAAAAAAgAB0AAAAAAAAAAAAhAB0AAAAAAAAAAAAiAB0AAAAAAAAAAAAjAB0AAAAAAAAAAAAkAB0AAAAAAAAAAAAlAB0AAAAAAAAAAAAmAB0AAAAAAAAAAAAnAB0AAAAAAAAAAAAoAB0AAAAAAAAAAAApAB0AAAAAAAAAAAAqAB0AAAAAAAAAAAArAB0AAAAAAAAAAAAsAB0AAAAAAAAAAAAtAB0AAAAAAAAAAAAuAB0AAAAAAAAAAAAvAB0AAAAAAAAAAAAwAB0AAAAAAAAAAAAxAB0AAAAAAAAAAAAyAB0AAAAAAAAAAAAzAB0AAAAAAAAAAAA0AB0AAAAAAAAAAAA=")
+
+[node name="Saw" parent="." index="11" instance=ExtResource("5_vwi6w")]
+position = Vector2(180, 119)
+moving = true
+displacement = Vector2(0, 50)
+duration = 2.0
+
+[node name="Saw2" parent="." index="12" instance=ExtResource("5_vwi6w")]
+position = Vector2(187, 105)
+moving = true
+displacement = Vector2(0, 50)
+duration = 3.0
+
+[node name="Lock" parent="." index="13" instance=ExtResource("7_sx6lh")]
+position = Vector2(344, 31)
+
+[node name="Marker2D" type="Marker2D" parent="Lock" index="6"]
+position = Vector2(-124, 178)
+
+[node name="Saw5" parent="." index="14" instance=ExtResource("5_vwi6w")]
+position = Vector2(194, 99)
+moving = true
+displacement = Vector2(0, 50)
+duration = 5.0
+
+[node name="DoubleJump2" parent="." index="15" instance=ExtResource("7_3b1n7")]
+position = Vector2(220, 225)
+
+[node name="DoubleJump" parent="." index="16" instance=ExtResource("7_3b1n7")]
+position = Vector2(282, 225)
+
+[node name="DoubleJump5" parent="." index="17" instance=ExtResource("7_3b1n7")]
+position = Vector2(338, 225)
+
+[node name="DoubleJump7" parent="." index="18" instance=ExtResource("7_3b1n7")]
+position = Vector2(379, 203)
+
+[node name="DoubleJump3" parent="." index="19" instance=ExtResource("7_3b1n7")]
+position = Vector2(342, 178)
+
+[node name="DoubleJump4" parent="." index="20" instance=ExtResource("7_3b1n7")]
+position = Vector2(380, 164)
+
+[node name="DoubleJump6" parent="." index="21" instance=ExtResource("7_3b1n7")]
+position = Vector2(342, 139)
+
+[node name="Saw3" parent="." index="22" instance=ExtResource("5_vwi6w")]
+position = Vector2(207, 217)
+moving = true
+displacement = Vector2(22, 0)
+duration = 5.0
+
+[node name="Saw4" parent="." index="23" instance=ExtResource("5_vwi6w")]
+position = Vector2(321, 217)
+moving = true
+displacement = Vector2(30, 0)
+duration = 2.0
+
+[node name="WallJump" parent="." index="24" instance=ExtResource("8_5qkq7")]
+tile_map_data = PackedByteArray("AAApAAIAAAAEAAAAAAApAAMAAAAEAAEAAAApAAQAAAAEAAIAAAApAAUAAAAEAAAAAAApAAcAAAAEAAIAAAApAAgAAAAEAAAAAAApAAkAAAAEAAEAAAApAAsAAAAEAAAAAAApAAwAAAAEAAEAAAApAA4AAAAEAAAAAAApAA8AAAAEAAEAAAAsAAIAAAAEAAAAAAAsAAMAAAAEAAEAAAAsAAQAAAAEAAIAAAAsAAUAAAAEAAAAAAAsAAYAAAAEAAEAAAAsAAcAAAAEAAIAAAAsAAoAAAAEAAIAAAAsAAsAAAAEAAAAAAAsAA0AAAAEAAIAAAAsAA4AAAAEAAAAAAA=")
+
+[node name="Saw6" parent="." index="25" instance=ExtResource("5_vwi6w")]
+position = Vector2(338, 100)
+moving = true
+displacement = Vector2(20, 0)
+duration = 2.0
+
+[node name="Saw7" parent="." index="26" instance=ExtResource("5_vwi6w")]
+position = Vector2(339, 71)
+moving = true
+displacement = Vector2(20, 0)
+duration = 3.0
+
+[node name="Saw8" parent="." index="27" instance=ExtResource("5_vwi6w")]
+position = Vector2(328, 51)
+moving = true
+displacement = Vector2(20, 0)

@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccn4jvdx4ndbp"]
+
+[ext_resource type="PackedScene" uid="uid://bbeuooev0v4l3" path="res://Scenes/Templates/LevelSelection/level_selection_template.tscn" id="1_1blt6"]
+[ext_resource type="PackedScene" uid="uid://b8hjrpnw4yq4u" path="res://Scenes/LevelSelection/LevelSelectionComponent/level_selection_component.tscn" id="2_mdxpl"]
+
+[node name="DesafioLevelSelection" instance=ExtResource("1_1blt6")]
+
+[node name="ColorRect" parent="." index="0"]
+color = Color(1, 0.372549, 0.552941, 1)
+
+[node name="LevelSelection" parent="." index="2"]
+world = 1
+levels_folder = "res://Scenes/Worlds/Desafios/Levels/level_"
+
+[node name="LevelSelectionComponent" parent="LevelSelection" index="1" instance=ExtResource("2_mdxpl")]
+position = Vector2(100, 132)
+title = "DESAFIO 1"
+level = "res://Scenes/Worlds/Desafios/Levels/level_1.tscn"
+
+[node name="LevelSelectionComponent2" parent="LevelSelection" index="2" instance=ExtResource("2_mdxpl")]
+position = Vector2(140, 132)
+title = "DESAFIO 2"
+level = "res://Scenes/Worlds/Desafios/Levels/level_2.tscn"
+
+[node name="LevelSelectionComponent3" parent="LevelSelection" index="3" instance=ExtResource("2_mdxpl")]
+position = Vector2(140, 108)
+title = "DESAFIO 3"
+level = "res://Scenes/Worlds/Desafios/Levels/level_3.tscn"
+
+[node name="LevelSelectionComponent4" parent="LevelSelection" index="4" instance=ExtResource("2_mdxpl")]
+position = Vector2(180, 108)
+title = "DESAFIO 4"
+level = "res://Scenes/Worlds/Desafios/Levels/level_4.tscn"
+
+[node name="LevelSelectionComponent5" parent="LevelSelection" index="5" instance=ExtResource("2_mdxpl")]
+position = Vector2(180, 132)
+title = "DESAFIO 6"
+level = "res://Scenes/Worlds/Desafios/Levels/level_5.tscn"
+
+[node name="LevelSelectionComponent6" parent="LevelSelection" index="6" instance=ExtResource("2_mdxpl")]
+position = Vector2(180, 156)
+title = "DESAFIO 5"
+level = "res://Scenes/Worlds/Desafios/Levels/level_6.tscn"
+
+[node name="LevelSelectionComponent7" parent="LevelSelection" index="7" instance=ExtResource("2_mdxpl")]
+position = Vector2(216, 156)
+title = "DESAFIO 6"
+level = "res://Scenes/Worlds/Desafios/Levels/level_7.tscn"
+
+[node name="LevelSelectionComponent8" parent="LevelSelection" index="8" instance=ExtResource("2_mdxpl")]
+position = Vector2(216, 132)
+title = "DESAFIO 6"
+level = "res://Scenes/Worlds/Desafios/Levels/level_8.tscn"
+
+[node name="WorldTitle" parent="." index="4"]
+text = "DESAFIOS"

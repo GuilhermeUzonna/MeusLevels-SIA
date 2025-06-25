@@ -1,0 +1,151 @@
+[gd_scene load_steps=10 format=3 uid="uid://c4i8w82wfp5w"]
+
+[ext_resource type="Script" path="res://Scenes/Gadgets/Sign/sign.gd" id="1_804qu"]
+[ext_resource type="FontFile" uid="uid://bhm2ik3ij1rpj" path="res://Assets/Fonts/public_pixel.otf" id="3_88qnv"]
+[ext_resource type="Texture2D" uid="uid://dqpa18u17iqug" path="res://Scenes/Gadgets/Sign/Textures/sign.png" id="4_owuvm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7gmq"]
+
+[sub_resource type="Animation" id="Animation_htk4e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-4, -4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xvply"]
+resource_name = "fade_in"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-4, -4), Vector2(-4, -7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hjko2"]
+resource_name = "fade_out"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-4, -7), Vector2(-4, -4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xitlh"]
+_data = {
+"RESET": SubResource("Animation_htk4e"),
+"fade_in": SubResource("Animation_xvply"),
+"fade_out": SubResource("Animation_hjko2")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hgwpg"]
+size = Vector2(16, 8)
+
+[node name="Sign" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_804qu")
+
+[node name="Pivot" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(8, 8)
+anchors_preset = 0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Pivot"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 7.0
+offset_right = 9.0
+offset_bottom = 15.0
+
+[node name="TextureRect" type="TextureRect" parent="Pivot/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_o7gmq")
+
+[node name="Label" type="Label" parent="Pivot/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_88qnv")
+theme_override_font_sizes/font_size = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xitlh")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_hgwpg")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+texture = ExtResource("4_owuvm")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

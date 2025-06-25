@@ -1,0 +1,238 @@
+[gd_scene load_steps=9 format=3 uid="uid://ckcd8ahypmsjt"]
+
+[ext_resource type="Script" path="res://Source/Introduction/IntroCountdown/countdown.gd" id="1_7hfbk"]
+[ext_resource type="PackedScene" uid="uid://l30nbi0dlyuc" path="res://Source/Introduction/IntroCountdown/PlayerWorld/player_world.tscn" id="2_7kiqk"]
+[ext_resource type="FontFile" uid="uid://bhm2ik3ij1rpj" path="res://Assets/Fonts/public_pixel.otf" id="2_43708"]
+[ext_resource type="PackedScene" uid="uid://brnpibs68nxk4" path="res://Source/Introduction/IntroCountdown/CountdownCell/countdown_cell.tscn" id="3_7s5du"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2n88r"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="Animation" id="Animation_il86u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_ks8c3"]
+resource_name = "fade_in"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1.05, 1.05), Vector2(1.02, 1.02), Vector2(1.03, 1.03), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1.05, 1.05), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ng8jy"]
+_data = {
+"RESET": SubResource("Animation_il86u"),
+"fade_in": SubResource("Animation_ks8c3")
+}
+
+[node name="Countdown" type="Control"]
+texture_filter = 1
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7hfbk")
+data_alvo = "2025-1-22"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -318.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(320, 240)
+render_target_update_mode = 4
+
+[node name="PlayerWorld" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_7kiqk")]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 160.0
+offset_right = -160.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_2n88r")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -573.0
+offset_top = -112.0
+offset_right = 435.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(504, 16)
+theme_override_constants/separation = 33
+alignment = 1
+
+[node name="Weeks" parent="HBoxContainer" instance=ExtResource("3_7s5du")]
+layout_mode = 2
+title = "semanas"
+
+[node name="Division" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_43708")
+text = ":
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Days" parent="HBoxContainer" instance=ExtResource("3_7s5du")]
+layout_mode = 2
+title = "dias"
+
+[node name="Division2" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_43708")
+text = ":
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hours" parent="HBoxContainer" instance=ExtResource("3_7s5du")]
+layout_mode = 2
+text = "02"
+title = "horas"
+
+[node name="Division3" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_43708")
+text = ":
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Minutes" parent="HBoxContainer" instance=ExtResource("3_7s5du")]
+layout_mode = 2
+text = "48"
+title = "minutos"
+
+[node name="Division4" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_43708")
+text = ":
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Seconds" parent="HBoxContainer" instance=ExtResource("3_7s5du")]
+layout_mode = 2
+text = "39"
+title = "segundos"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ng8jy")
+}
+autoplay = "fade_in"
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 160.0
+offset_top = -150.0
+offset_right = -160.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(480, 52.5)
+mouse_filter = 0
+theme_override_fonts/font = ExtResource("2_43708")
+theme_override_font_sizes/font_size = 20
+text = "clique aqui para rever a introdução"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="gui_input" from="Label" to="." method="_on_label_gui_input"]

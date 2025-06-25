@@ -1,0 +1,110 @@
+[gd_scene load_steps=9 format=3 uid="uid://hs5ad6aswbk5"]
+
+[ext_resource type="Script" path="res://Scenes/Characters/Friends/HouseFriend/house_friend.gd" id="1_3tmnp"]
+[ext_resource type="SpriteFrames" uid="uid://bwerrrnkduax6" path="res://Assets/Resources/SpriteFrames/Characters/Friends/Leonardo/leonardo_idle.tres" id="2_vrbb8"]
+[ext_resource type="Texture2D" uid="uid://bmryk4iyjjhjp" path="res://Assets/Resources/Tiles/Textures/base_tilemap.png" id="3_wmsfr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v4ci2"]
+size = Vector2(8, 8)
+
+[sub_resource type="Animation" id="Animation_l1lnl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_83rc1"]
+resource_name = "jump"
+length = 0.7
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2, 0.25, 0.3, 0.55, 0.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 1), Vector2(0, 0), Vector2(0, -10), Vector2(0, -10.5), Vector2(0, -10), Vector2(0, 1), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.2, 0.5, 0.55, 0.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.2, 0.8), Vector2(1, 1), Vector2(0.8, 1.2), Vector2(1, 1), Vector2(1, 1), Vector2(1.2, 0.8), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5g8xa"]
+_data = {
+"RESET": SubResource("Animation_l1lnl"),
+"jump": SubResource("Animation_83rc1")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qe727"]
+size = Vector2(16, 8)
+
+[node name="HouseFriend" type="Area2D"]
+texture_filter = 1
+script = ExtResource("1_3tmnp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_v4ci2")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.996078, 1, 1, 1)
+sprite_frames = ExtResource("2_vrbb8")
+autoplay = "default"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5g8xa")
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_qe727")
+
+[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(-4, 0)
+texture = ExtResource("3_wmsfr")
+region_enabled = true
+region_rect = Rect2(16, 0, 8, 8)
+
+[node name="Sprite2D3" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(4, 0)
+texture = ExtResource("3_wmsfr")
+region_enabled = true
+region_rect = Rect2(32, 0, 8, 8)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

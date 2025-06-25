@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://dyfxps3qj77ox"]
+
+[ext_resource type="Shader" path="res://Assets/Resources/Shaders/shadow_shader.gdshader" id="1_6744b"]
+[ext_resource type="PackedScene" uid="uid://s0lqj25qsa0c" path="res://Source/PauseMenu2/pause_menu_button.tscn" id="1_ichf8"]
+[ext_resource type="Script" path="res://Source/PauseMenu2/pause_menu.gd" id="1_yt0nr"]
+[ext_resource type="PackedScene" uid="uid://curi6fyh3qyb6" path="res://Source/PauseMenu2/options.tscn" id="4_y6mur"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t85sq"]
+shader = ExtResource("1_6744b")
+shader_parameter/pixel_offset = Vector2(1, -1)
+shader_parameter/shadow_color = null
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yt0nr")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.501961)
+
+[node name="Menu" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Resume" parent="Menu" instance=ExtResource("1_ichf8")]
+layout_mode = 2
+title = "CONTINUAR"
+
+[node name="LevelSelection" parent="Menu" instance=ExtResource("1_ichf8")]
+layout_mode = 2
+title = "SAIR DO NÍVEL"
+
+[node name="Options" parent="Menu" instance=ExtResource("1_ichf8")]
+layout_mode = 2
+title = "OPÇÕES"
+
+[node name="Quit" parent="Menu" instance=ExtResource("1_ichf8")]
+layout_mode = 2
+title = "VOLTAR AO MENU"
+
+[node name="Options" parent="." instance=ExtResource("4_y6mur")]
+layout_mode = 1
+
+[node name="Shader" type="ColorRect" parent="."]
+z_index = 2
+material = SubResource("ShaderMaterial_t85sq")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="selected" from="Menu/Resume" to="." method="_on_resume_selected"]
+[connection signal="selected" from="Menu/LevelSelection" to="." method="_on_level_selection_selected"]
+[connection signal="selected" from="Menu/Options" to="." method="_on_options_selected"]

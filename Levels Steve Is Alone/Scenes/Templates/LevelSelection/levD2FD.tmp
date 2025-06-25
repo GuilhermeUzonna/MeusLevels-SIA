@@ -1,0 +1,165 @@
+[gd_scene load_steps=18 format=3 uid="uid://bbeuooev0v4l3"]
+
+[ext_resource type="Script" path="res://Scenes/Templates/LevelSelection/level_selection_template.gd" id="1_tj5ci"]
+[ext_resource type="PackedScene" uid="uid://wfjw4cjrophj" path="res://Scenes/LevelSelection/level_selection.tscn" id="2_h0tgt"]
+[ext_resource type="PackedScene" uid="uid://c1f6mjft8n87g" path="res://Scenes/LevelSelection/Cursor/cursor.tscn" id="3_owcve"]
+[ext_resource type="Shader" path="res://Assets/Resources/Shaders/circle_transition.gdshader" id="4_1uksk"]
+[ext_resource type="Shader" path="res://Assets/Resources/Shaders/shadow_shader.gdshader" id="4_oi2s5"]
+[ext_resource type="FontFile" uid="uid://bhm2ik3ij1rpj" path="res://Assets/Fonts/public_pixel.otf" id="6_2rqi3"]
+[ext_resource type="PackedScene" uid="uid://cq5lx1lefjnkq" path="res://Scenes/UI/ButtonPrompt/button_prompt.tscn" id="7_q3kmh"]
+[ext_resource type="Texture2D" uid="uid://b2tcu13pb17os" path="res://Scenes/UI/ButtonPrompt/Textures/jump_sheet.png" id="8_enkq3"]
+[ext_resource type="Texture2D" uid="uid://lgqj4pk1etfu" path="res://Scenes/UI/ButtonPrompt/Textures/return_sheet.png" id="9_dgxmg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pgisl"]
+size = Vector2(320, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ft3hv"]
+size = Vector2(8, 240)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jfcyw"]
+shader = ExtResource("4_oi2s5")
+shader_parameter/pixel_offset = Vector2(1, -1)
+shader_parameter/shadow_color = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_72haj"]
+shader = ExtResource("4_1uksk")
+shader_parameter/circle_size = 1.0
+shader_parameter/screen_width = 320.0
+shader_parameter/screen_height = 240.0
+
+[sub_resource type="Animation" id="Animation_55rfe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_dek8h"]
+resource_name = "transition_in"
+length = 0.7
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_14vb7"]
+resource_name = "transition_out"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bltco"]
+_data = {
+"RESET": SubResource("Animation_55rfe"),
+"transition_in": SubResource("Animation_dek8h"),
+"transition_out": SubResource("Animation_14vb7")
+}
+
+[node name="LevelSelectionTemplate" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_tj5ci")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 320.0
+offset_bottom = 240.0
+color = Color(0, 0.815686, 1, 1)
+
+[node name="Borders" type="StaticBody2D" parent="."]
+
+[node name="Top" type="CollisionShape2D" parent="Borders"]
+position = Vector2(160, -4)
+shape = SubResource("RectangleShape2D_pgisl")
+
+[node name="Bottom" type="CollisionShape2D" parent="Borders"]
+position = Vector2(160, 244)
+shape = SubResource("RectangleShape2D_pgisl")
+
+[node name="Left" type="CollisionShape2D" parent="Borders"]
+position = Vector2(-4, 120)
+shape = SubResource("RectangleShape2D_ft3hv")
+
+[node name="Right" type="CollisionShape2D" parent="Borders"]
+position = Vector2(324, 120)
+shape = SubResource("RectangleShape2D_ft3hv")
+
+[node name="LevelSelection" parent="." instance=ExtResource("2_h0tgt")]
+
+[node name="Cursor" parent="." groups=["cursor"] instance=ExtResource("3_owcve")]
+
+[node name="WorldTitle" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 320.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_2rqi3")
+theme_override_font_sizes/font_size = 8
+text = "PRÓLOGO"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ButtonPrompt" parent="." instance=ExtResource("7_q3kmh")]
+offset_left = 4.0
+offset_top = 228.0
+offset_right = 114.0
+offset_bottom = 236.0
+input_sheet = ExtResource("8_enkq3")
+
+[node name="ButtonPrompt2" parent="." instance=ExtResource("7_q3kmh")]
+offset_left = 247.0
+offset_top = 228.0
+offset_right = 357.0
+offset_bottom = 236.0
+input_sheet = ExtResource("9_dgxmg")
+
+[node name="Shader" type="ColorRect" parent="."]
+z_index = 10
+material = SubResource("ShaderMaterial_jfcyw")
+offset_right = 320.0
+offset_bottom = 240.0
+
+[node name="Transition" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_72haj")
+offset_right = 320.0
+offset_bottom = 240.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bltco")
+}
+autoplay = "transition_in"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

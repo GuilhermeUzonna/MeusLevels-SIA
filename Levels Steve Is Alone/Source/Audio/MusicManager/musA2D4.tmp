@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5i6ymg2qrvg5"]
+
+[ext_resource type="AudioStream" uid="uid://dj81sxgoi30pl" path="res://Assets/Sounds/Songs/prologue.mp3" id="1_1jw6l"]
+[ext_resource type="Script" path="res://Source/Audio/MusicManager/music_manager.gd" id="2_n5i1e"]
+
+[node name="MusicManager" type="AudioStreamPlayer"]
+process_mode = 3
+stream = ExtResource("1_1jw6l")
+autoplay = true
+bus = &"Music"
+script = ExtResource("2_n5i1e")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://biytk86axxdww"]
+
+[ext_resource type="FontFile" uid="uid://bhm2ik3ij1rpj" path="res://Assets/Fonts/public_pixel.otf" id="1_8s4vp"]
+[ext_resource type="Script" path="res://Source/fps_count.gd" id="1_je3fa"]
+
+
+[node name="Label" type="Label"]
+visible = false
+z_index = 2
+texture_filter = 1
+offset_right = 33.0
+offset_bottom = 8.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_8s4vp")
+theme_override_font_sizes/font_size = 8
+text = "0fps"
+script = ExtResource("1_je3fa")

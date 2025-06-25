@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://b7lo3813hmu6r"]
+
+[ext_resource type="Script" path="res://Scenes/Templates/Level/level_template.gd" id="1_ocdgb"]
+[ext_resource type="PackedScene" uid="uid://dpja7gv0swviw" path="res://Scenes/Characters/Player/Player.tscn" id="2_aehvf"]
+[ext_resource type="TileSet" uid="uid://sx23g473e4rb" path="res://Assets/Resources/Tiles/base_tilemap.tres" id="2_xkf05"]
+[ext_resource type="Shader" path="res://Assets/Resources/Shaders/shadow_shader.gdshader" id="3_heish"]
+[ext_resource type="PackedScene" uid="uid://cgcchbtd3ppny" path="res://Scenes/Gadgets/EndPoint/end_point.tscn" id="6_kagsr"]
+[ext_resource type="PackedScene" uid="uid://b6ghjj6imxp00" path="res://Scenes/Characters/Camera/game_camera.tscn" id="7_qifll"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2s1ky"]
+shader = ExtResource("3_heish")
+shader_parameter/pixel_offset = Vector2(1, -1)
+shader_parameter/shadow_color = null
+
+[node name="Level_Template" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_ocdgb")
+
+[node name="BackgroundColor" type="ColorRect" parent="."]
+offset_right = 320.0
+offset_bottom = 240.0
+color = Color(0.301961, 0.301961, 0.301961, 1)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = ExtResource("2_xkf05")
+
+[node name="Player" parent="." instance=ExtResource("2_aehvf")]
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(156, 120)
+
+[node name="EndPoint" parent="." instance=ExtResource("6_kagsr")]
+position = Vector2(164, 120)
+
+[node name="GameCamera" parent="." instance=ExtResource("7_qifll")]
+
+[node name="Shader" type="ColorRect" parent="."]
+z_index = 3
+material = SubResource("ShaderMaterial_2s1ky")
+offset_right = 320.0
+offset_bottom = 240.0
+
+[connection signal="end_of_transition" from="GameCamera" to="." method="_on_game_camera_end_of_transition"]

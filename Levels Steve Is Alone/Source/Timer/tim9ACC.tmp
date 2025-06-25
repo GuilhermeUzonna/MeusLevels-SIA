@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://dn8fg3y6cd6p0"]
+
+[ext_resource type="FontFile" uid="uid://bhm2ik3ij1rpj" path="res://Assets/Fonts/public_pixel.otf" id="1_60juj"]
+[ext_resource type="Script" path="res://Source/Timer/timer.gd" id="2_4083l"]
+
+[node name="Timer" type="Control"]
+z_index = 2
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -240.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("2_4083l")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.791
+anchor_right = 0.991
+anchor_bottom = 0.062
+offset_left = -0.119995
+offset_right = -0.120026
+offset_bottom = 0.119999
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("1_60juj")
+theme_override_font_sizes/font_size = 8
+text = "00:00.00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Label"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.062
+anchor_right = 1.047
+anchor_bottom = 1.0
+offset_left = -0.0319998
+offset_right = -0.00800323
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.25098)

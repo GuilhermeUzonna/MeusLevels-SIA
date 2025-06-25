@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvx3qrvf06e8t"]
+
+[ext_resource type="PackedScene" uid="uid://bbeuooev0v4l3" path="res://Scenes/Templates/LevelSelection/level_selection_template.tscn" id="1_osfi2"]
+[ext_resource type="PackedScene" uid="uid://b8hjrpnw4yq4u" path="res://Scenes/LevelSelection/LevelSelectionComponent/level_selection_component.tscn" id="2_q0e1d"]
+
+[node name="PrologueLevelSelection" instance=ExtResource("1_osfi2")]
+process_mode = 3
+
+[node name="LevelSelectionComponent12" parent="LevelSelection" index="1" instance=ExtResource("2_q0e1d")]
+position = Vector2(60, 140)
+title = "UMA CASA GRANDE DEMAIS"
+level = "res://Scenes/Worlds/Prologue/Levels/level_1.tscn"
+
+[node name="LevelSelectionComponent13" parent="LevelSelection" index="2" instance=ExtResource("2_q0e1d")]
+position = Vector2(100, 140)
+title = "O MUNDO LÁ FORA É ASSUSTADOR"
+level = "res://Scenes/Worlds/Prologue/Levels/level_2.tscn"
+
+[node name="LevelSelectionComponent14" parent="LevelSelection" index="3" instance=ExtResource("2_q0e1d")]
+position = Vector2(100, 180)
+title = "UM SALTO DE FÉ"
+level = "res://Scenes/Worlds/Prologue/Levels/level_3.tscn"
+
+[node name="LevelSelectionComponent15" parent="LevelSelection" index="4" instance=ExtResource("2_q0e1d")]
+position = Vector2(140, 180)
+title = "ASCENSÃO"
+level = "res://Scenes/Worlds/Prologue/Levels/level_4.tscn"
+
+[node name="LevelSelectionComponent16" parent="LevelSelection" index="5" instance=ExtResource("2_q0e1d")]
+position = Vector2(140, 156)
+title = "UM PULO DE CADA VEZ"
+level = "res://Scenes/Worlds/Prologue/Levels/level_5.tscn"
+
+[node name="LevelSelectionComponent17" parent="LevelSelection" index="6" instance=ExtResource("2_q0e1d")]
+position = Vector2(180, 156)
+title = "O CAMINHO É ESTREITO"
+level = "res://Scenes/Worlds/Prologue/Levels/level_6.tscn"
+
+[node name="LevelSelectionComponent18" parent="LevelSelection" index="7" instance=ExtResource("2_q0e1d")]
+position = Vector2(180, 132)
+title = "NAS ALTURAS"
+level = "res://Scenes/Worlds/Prologue/Levels/level_7.tscn"
+
+[node name="LevelSelectionComponent19" parent="LevelSelection" index="8" instance=ExtResource("2_q0e1d")]
+position = Vector2(221, 132)
+title = "EQUILÍBRIO"
+level = "res://Scenes/Worlds/Prologue/Levels/level_8.tscn"
+
+[node name="LevelSelectionComponent20" parent="LevelSelection" index="9" instance=ExtResource("2_q0e1d")]
+position = Vector2(221, 108)
+title = "SEREMOS SOZINHOS JUNTOS"
+level = "res://Scenes/Worlds/Prologue/Levels/level_9.tscn"
+
+[node name="Cursor" parent="." index="3"]
+process_mode = 1
+
+[node name="ButtonPrompt" parent="." index="5"]
+description = "SELECIONAR NÍVEL"
+
+[node name="ButtonPrompt2" parent="." index="6"]
+description = "VOLTAR"

@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://dagd4n7rdr7gy"]
+
+[ext_resource type="Script" path="res://Scenes/Gadgets/MovablePlatform/moving_platform_cell.gd" id="1_smsko"]
+[ext_resource type="Texture2D" uid="uid://bmryk4iyjjhjp" path="res://Assets/Sprites/Tilemaps/base_tilemap.png" id="2_0qidc"]
+
+[node name="MovingPlatformCell" type="CollisionShape2D"]
+texture_filter = 1
+script = ExtResource("1_smsko")
+
+[node name="center" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_0qidc")
+region_enabled = true
+region_rect = Rect2(24, 0, 8, 8)
+
+[node name="left" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_0qidc")
+region_enabled = true
+region_rect = Rect2(16, 0, 8, 8)
+
+[node name="right" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_0qidc")
+region_enabled = true
+region_rect = Rect2(32, 0, 8, 8)
+
+[node name="solo" type="Sprite2D" parent="."]
+texture = ExtResource("2_0qidc")
+region_enabled = true
+region_rect = Rect2(8, 0, 8, 8)

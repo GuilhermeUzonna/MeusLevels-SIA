@@ -1,0 +1,452 @@
+[gd_scene load_steps=18 format=3 uid="uid://0qkc0k0b04ey"]
+
+[ext_resource type="Texture2D" uid="uid://c3mqi4uipa3t8" path="res://Scenes/UI/Menus/WorldSelection/WorldIcon/Textures/world_icon_selected.png" id="1_7iu62"]
+[ext_resource type="Script" path="res://Scenes/UI/Menus/WorldSelection/WorldIcon/world_icon.gd" id="1_h1pvy"]
+[ext_resource type="Texture2D" uid="uid://ckpy4kaf1a1r7" path="res://Scenes/UI/Menus/WorldSelection/WorldIcon/Textures/world_icon_background.png" id="2_agq0g"]
+[ext_resource type="FontFile" uid="uid://bhm2ik3ij1rpj" path="res://Assets/Fonts/public_pixel.otf" id="2_mktrl"]
+[ext_resource type="Texture2D" uid="uid://ceaisnwrwgccm" path="res://Scenes/UI/Menus/WorldSelection/WorldIcon/Textures/world_icon_locked.png" id="3_oxrd7"]
+[ext_resource type="Texture2D" uid="uid://c1kcq6rd15jyf" path="res://Scenes/UI/Menus/WorldSelection/WorldIcon/Textures/world_icon_unselected.png" id="4_1nqxs"]
+[ext_resource type="Texture2D" uid="uid://bqnyh7g0lx3rh" path="res://Scenes/UI/Menus/WorldSelection/WorldIcon/Textures/trophy_icon.png" id="5_7pey4"]
+[ext_resource type="Texture2D" uid="uid://cy1djcvedcahr" path="res://Scenes/UI/Menus/WorldSelection/WorldIcon/Textures/lock_icon.png" id="6_2i4y8"]
+[ext_resource type="Texture2D" uid="uid://bv6wmur4eytim" path="res://Scenes/UI/Menus/WorldSelection/WorldIcon/Textures/coin_icon.png" id="8_psy0l"]
+[ext_resource type="Texture2D" uid="uid://gwdlma0h1u7l" path="res://Scenes/UI/Menus/WorldSelection/WorldIcon/Textures/lock_icon_unlocked.png" id="9_o1ned"]
+
+[sub_resource type="Animation" id="Animation_co8mk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Background/LockedBackground/Lock:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Background/LockedBackground/Lock:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Background/LockedBackground/Lock:texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_2i4y8")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Background/LockedBackground/Lock:pivot_offset")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(12, 12)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Background/LockedBackground/UnlockCoins:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Background/LockedBackground:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Background/LockedBackground/Lock:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(30, 23)]
+}
+
+[sub_resource type="Animation" id="Animation_phdsy"]
+resource_name = "hover_left"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.174533, 0.0872665, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_4jyn4"]
+resource_name = "hover_right"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.174533, -0.0872665, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_fmf7w"]
+resource_name = "select"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.261799, 0.218166, -0.174533, 0.1309, -0.0872665, 0.0436332, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(5, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_wm6wp"]
+resource_name = "select_locked"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.261799, 0.218166, -0.174533, 0.1309, -0.0872665, 0.0436332, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_0ea4p"]
+resource_name = "unlock"
+length = 1.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/LockedBackground/Lock:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.55, 0.6, 0.65, 0.7, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.261799, 0.174533, 0.0872665, -0.261799]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background/LockedBackground/Lock:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(1.25, 1.25)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Background/LockedBackground/Lock:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_o1ned")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Background/LockedBackground/Lock:pivot_offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(15, 15)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Background/LockedBackground/UnlockCoins:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.3, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Background/LockedBackground:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.3, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Background/LockedBackground/Lock:position")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1.1, 1.3, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(30, 23), Vector2(30, 0), Vector2(30, 160)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t1ewu"]
+_data = {
+"RESET": SubResource("Animation_co8mk"),
+"hover_left": SubResource("Animation_phdsy"),
+"hover_right": SubResource("Animation_4jyn4"),
+"select": SubResource("Animation_fmf7w"),
+"select_locked": SubResource("Animation_wm6wp"),
+"unlock": SubResource("Animation_0ea4p")
+}
+
+[node name="WorldIcon" type="Control"]
+texture_filter = 1
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 90.0
+offset_bottom = 90.0
+pivot_offset = Vector2(45, 45)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_h1pvy")
+world_color = Color(0, 0.816667, 1, 1)
+
+[node name="Background" type="TextureRect" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 0
+offset_right = 90.0
+offset_bottom = 90.0
+pivot_offset = Vector2(45, 45)
+texture = ExtResource("2_agq0g")
+
+[node name="IconUnhover" type="TextureRect" parent="Background"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_1nqxs")
+
+[node name="Label" type="Label" parent="Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -9.0
+offset_right = 20.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_mktrl")
+theme_override_font_sizes/font_size = 8
+text = "WORLD"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Trophy" type="TextureRect" parent="Background"]
+modulate = Color(1, 1, 1, 0.501961)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = 14.0
+offset_right = 8.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_7pey4")
+
+[node name="CurrentCoins" type="HBoxContainer" parent="Background"]
+visible = false
+layout_mode = 0
+offset_top = 74.0
+offset_right = 90.0
+offset_bottom = 89.0
+alignment = 1
+
+[node name="Coin" type="TextureRect" parent="Background/CurrentCoins"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("8_psy0l")
+
+[node name="Label" type="Label" parent="Background/CurrentCoins"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_mktrl")
+theme_override_font_sizes/font_size = 8
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="LockedBackground" type="TextureRect" parent="Background"]
+layout_mode = 0
+offset_right = 90.0
+offset_bottom = 90.0
+texture = ExtResource("3_oxrd7")
+
+[node name="Lock" type="TextureRect" parent="Background/LockedBackground"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = 115.0
+offset_right = 15.0
+offset_bottom = 145.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(12, 12)
+texture = ExtResource("6_2i4y8")
+
+[node name="UnlockCoins" type="HBoxContainer" parent="Background/LockedBackground"]
+layout_mode = 0
+offset_top = 53.0
+offset_right = 90.0
+offset_bottom = 68.0
+alignment = 1
+
+[node name="Coin" type="TextureRect" parent="Background/LockedBackground/UnlockCoins"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("8_psy0l")
+
+[node name="Label" type="Label" parent="Background/LockedBackground/UnlockCoins"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_mktrl")
+theme_override_font_sizes/font_size = 8
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="IconHover" type="TextureRect" parent="Background"]
+visible = false
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_7iu62")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_t1ewu")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

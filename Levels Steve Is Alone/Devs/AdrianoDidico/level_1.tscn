@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=4 uid="uid://brn6xbfv5dh0e"]
+
+[ext_resource type="PackedScene" uid="uid://b7lo3813hmu6r" path="res://Scenes/Templates/Level/level_template.tscn" id="1_l3bqe"]
+[ext_resource type="PackedScene" uid="uid://bc6bnqni160k6" path="res://Scenes/Gadgets/BreakableTiles/breakable_tile.tscn" id="2_er6ll"]
+[ext_resource type="PackedScene" uid="uid://b1xpgte3ll05u" path="res://Scenes/Gadgets/DoubleJump/double_jump.tscn" id="4_dnoq3"]
+
+[node name="Level1" instance=ExtResource("1_l3bqe")]
+
+[node name="BackgroundColor" parent="." index="0"]
+color = Color(0.181598, 0.316361, 0.424875, 1)
+
+[node name="TileMapLayer" parent="." index="1"]
+position = Vector2(107, -16)
+tile_map_data = PackedByteArray("AAAIAB8AAAACAAMAAAAIAB4AAAACAAEAAAAHAB8AAAABAAMAAAAHAB4AAAABAAEAAAAGAB8AAAAAAAMAAAAGAB4AAAAAAAEAAAD0/xEAAAABAAMAAAD0/xAAAAABAAEAAADz/xEAAAABAAMAAADz/xAAAAABAAEAAADy/xEAAAAAAAMAAADy/xAAAAAAAAEAAAD1/xEAAAABAAMAAAD1/xAAAAABAAEAAAD2/xEAAAACAAMAAAD2/xAAAAACAAEAAAD2/xUAAAACAAMAAAD2/xQAAAACAAEAAAD1/xUAAAABAAMAAAD1/xQAAAABAAEAAAD0/xUAAAABAAMAAAD0/xQAAAABAAEAAADz/xUAAAABAAMAAADz/xQAAAABAAEAAADy/xUAAAAAAAMAAADy/xQAAAAAAAEAAADy/xMAAAAAAAAAAADx/xMAAAAAAAMAAADx/xIAAAAAAAEAAADy/xIAAAAAAAAAAAA=")
+
+[node name="SpawnPoint" parent="." index="3"]
+position = Vector2(167, 213)
+
+[node name="EndPoint" parent="." index="4"]
+position = Vector2(3, 137)
+
+[node name="GameCamera" parent="." index="5"]
+visible = false
+
+[node name="BreakableTile" parent="." index="6" instance=ExtResource("2_er6ll")]
+position = Vector2(112, 204)
+size = 2
+
+[node name="BreakableTile2" parent="." index="7" instance=ExtResource("2_er6ll")]
+position = Vector2(153, 177)
+size = 2
+
+[node name="BreakableTile3" parent="." index="8" instance=ExtResource("2_er6ll")]
+position = Vector2(205, 154)
+size = 2
+
+[node name="BreakableTile4" parent="." index="9" instance=ExtResource("2_er6ll")]
+position = Vector2(251, 144)
+size = 2
+
+[node name="BreakableTile5" parent="." index="10" instance=ExtResource("2_er6ll")]
+position = Vector2(245, 120)
+size = 1
+
+[node name="BreakableTile6" parent="." index="11" instance=ExtResource("2_er6ll")]
+position = Vector2(267, 104)
+size = 1
+
+[node name="BreakableTile7" parent="." index="12" instance=ExtResource("2_er6ll")]
+position = Vector2(246, 87)
+size = 1
+
+[node name="BreakableTile8" parent="." index="13" instance=ExtResource("2_er6ll")]
+position = Vector2(270, 74)
+size = 1
+
+[node name="BreakableTile9" parent="." index="14" instance=ExtResource("2_er6ll")]
+position = Vector2(233, 46)
+size = 3
+
+[node name="BreakableTile10" parent="." index="15" instance=ExtResource("2_er6ll")]
+position = Vector2(194, 47)
+size = 1
+
+[node name="BreakableTile11" parent="." index="16" instance=ExtResource("2_er6ll")]
+position = Vector2(154, 47)
+size = 1
+
+[node name="DoubleJump2" parent="." index="17" instance=ExtResource("4_dnoq3")]
+position = Vector2(113, 97)
+
+[node name="DoubleJump3" parent="." index="18" instance=ExtResource("4_dnoq3")]
+position = Vector2(86, 125)

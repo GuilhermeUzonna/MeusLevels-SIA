@@ -1,0 +1,132 @@
+[gd_scene load_steps=8 format=3 uid="uid://ckcd8ahypmsjt"]
+
+[ext_resource type="Script" path="res://Scenes/Countdown/countdown.gd" id="1_7hfbk"]
+[ext_resource type="PackedScene" uid="uid://l30nbi0dlyuc" path="res://Scenes/Countdown/PlayerWorld/player_world.tscn" id="2_7kiqk"]
+[ext_resource type="FontFile" uid="uid://7pf0pun2v3je" path="res://Assets/Fonts/PublicPixel.otf" id="2_43708"]
+[ext_resource type="PackedScene" uid="uid://brnpibs68nxk4" path="res://Scenes/Countdown/CountdownCell/countdown_cell.tscn" id="3_7s5du"]
+[ext_resource type="Shader" path="res://Assets/Resources/Shaders/shadow_shader.gdshader" id="5_sjw27"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2n88r"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5qm3k"]
+shader = ExtResource("5_sjw27")
+shader_parameter/pixel_offset = Vector2(2, -2)
+shader_parameter/shadow_color = null
+
+[node name="Countdown" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7hfbk")
+data_alvo = "2025-1-22"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(360, 240)
+render_target_update_mode = 4
+
+[node name="PlayerWorld" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_7kiqk")]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_2n88r")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -328.0
+offset_top = -29.0
+offset_right = 328.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Weeks" parent="HBoxContainer" instance=ExtResource("3_7s5du")]
+layout_mode = 2
+text = "05"
+title = "semanas"
+
+[node name="Division" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_43708")
+text = ":
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Days" parent="HBoxContainer" instance=ExtResource("3_7s5du")]
+layout_mode = 2
+title = "dias"
+
+[node name="Division2" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_43708")
+text = ":
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hours" parent="HBoxContainer" instance=ExtResource("3_7s5du")]
+layout_mode = 2
+text = "21"
+title = "horas"
+
+[node name="Division3" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_43708")
+text = ":
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Minutes" parent="HBoxContainer" instance=ExtResource("3_7s5du")]
+layout_mode = 2
+text = "10"
+title = "minutos"
+
+[node name="Division4" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_43708")
+text = ":
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Seconds" parent="HBoxContainer" instance=ExtResource("3_7s5du")]
+layout_mode = 2
+text = "40"
+title = "segundos"
+
+[node name="Shader" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_5qm3k")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

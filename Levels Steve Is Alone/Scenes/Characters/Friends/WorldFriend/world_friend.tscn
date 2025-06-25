@@ -1,0 +1,222 @@
+[gd_scene load_steps=10 format=3 uid="uid://dbcsullvpp6ka"]
+
+[ext_resource type="Script" path="res://Scenes/Characters/Friends/WorldFriend/world_friend.gd" id="1_7qyok"]
+[ext_resource type="SpriteFrames" uid="uid://bwerrrnkduax6" path="res://Assets/Resources/SpriteFrames/Characters/Friends/Leonardo/leonardo_idle.tres" id="3_lnty5"]
+[ext_resource type="Texture2D" uid="uid://b5oyu1ago52xq" path="res://Scenes/Characters/Friends/WorldFriend/Textures/glow.png" id="3_m21up"]
+[ext_resource type="FontFile" uid="uid://bhm2ik3ij1rpj" path="res://Assets/Fonts/public_pixel.otf" id="4_kyw32"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_imoph"]
+size = Vector2(6, 240)
+
+[sub_resource type="Animation" id="Animation_l1lnl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Glow:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Glow:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Label:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-42, -20)]
+}
+
+[sub_resource type="Animation" id="Animation_83rc1"]
+resource_name = "jump"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 1), Vector2(0, 0), Vector2(0, -10), Vector2(0, -10.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.2, 0.8), Vector2(1, 1), Vector2(0.8, 1.2), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-42, -20), Vector2(-42, -25)]
+}
+
+[sub_resource type="Animation" id="Animation_56o82"]
+resource_name = "shine"
+length = 16.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Glow:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 16),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Glow:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-42, -25), Vector2(-42, -28), Vector2(-42, -25), Vector2(-42, -28), Vector2(-42, -25), Vector2(-42, -28), Vector2(-42, -25), Vector2(-42, -28), Vector2(-42, -25), Vector2(-42, -28), Vector2(-42, -25), Vector2(-42, -28), Vector2(-42, -25), Vector2(-42, -28), Vector2(-42, -25), Vector2(-42, -28)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5g8xa"]
+_data = {
+"RESET": SubResource("Animation_l1lnl"),
+"jump": SubResource("Animation_83rc1"),
+"shine": SubResource("Animation_56o82")
+}
+
+[node name="WorldFriend" type="Area2D"]
+texture_filter = 1
+script = ExtResource("1_7qyok")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_imoph")
+
+[node name="Glow" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -10)
+texture = ExtResource("3_m21up")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.996078, 1, 1, 1)
+sprite_frames = ExtResource("3_lnty5")
+autoplay = "default"
+frame_progress = 0.387179
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5g8xa")
+}
+next/jump = &"shine"
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = -42.0
+offset_top = -20.0
+offset_right = 46.0
+offset_bottom = -12.0
+theme_override_fonts/font = ExtResource("4_kyw32")
+theme_override_font_sizes/font_size = 8
+text = "NOVO AMIGO!"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

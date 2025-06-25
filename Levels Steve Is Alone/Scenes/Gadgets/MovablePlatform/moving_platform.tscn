@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dia7ud8a3o55p"]
+
+[ext_resource type="Script" path="res://Scenes/Gadgets/MovablePlatform/moving_platform.gd" id="1_06ub0"]
+[ext_resource type="Texture2D" uid="uid://b7re5htxlm3y4" path="res://Scenes/Gadgets/MovablePlatform/Textures/tooltip.png" id="2_vj8l7"]
+
+[node name="MovingPlatform" type="Node2D"]
+script = ExtResource("1_06ub0")
+
+[node name="AnimatableBody" type="AnimatableBody2D" parent="."]
+
+[node name="Tooltip" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.501961)
+texture_filter = 1
+custom_minimum_size = Vector2(8, 8)
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+texture = ExtResource("2_vj8l7")
+stretch_mode = 1

@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtt217vy536bg"]
+
+[ext_resource type="Script" path="res://Source/PauseMenuOLD/Options/options.gd" id="1_c1ga8"]
+[ext_resource type="PackedScene" uid="uid://c4kaqc6v50icy" path="res://Source/PauseMenuOLD/PauseMenuCell/pause_menu_cell.tscn" id="1_gtbof"]
+[ext_resource type="PackedScene" uid="uid://c67pkjqo1gdxt" path="res://Source/PauseMenuOLD/Options/OptionsMenuCell/options_menu_cell.tscn" id="2_dimyj"]
+
+[node name="Options" type="VBoxContainer"]
+visible = false
+texture_filter = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -28.0
+offset_right = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+script = ExtResource("1_c1ga8")
+
+[node name="Music" parent="." instance=ExtResource("2_dimyj")]
+layout_mode = 2
+title = "MÚSICA"
+
+[node name="Sounds" parent="." instance=ExtResource("2_dimyj")]
+layout_mode = 2
+title = "SONS"
+
+[node name="Back" parent="." instance=ExtResource("1_gtbof")]
+layout_mode = 2
+title = "VOLTAR"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="selected" from="Back" to="." method="_on_back_selected"]

@@ -1,0 +1,84 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdff0n0i1suxu"]
+
+[ext_resource type="Script" path="res://Source/MobileControls/mobile_controls.gd" id="1_7f4v6"]
+[ext_resource type="Texture2D" uid="uid://dffassbpmjulb" path="res://icon.svg" id="1_gtjxy"]
+
+[node name="MobileControls" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_7f4v6")
+
+[node name="Up" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.25098)
+layout_mode = 0
+offset_left = 36.0
+offset_top = 140.0
+offset_right = 68.0
+offset_bottom = 172.0
+mouse_filter = 0
+texture = ExtResource("1_gtjxy")
+expand_mode = 1
+
+[node name="Left" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.25098)
+layout_mode = 0
+offset_left = 4.0
+offset_top = 172.0
+offset_right = 36.0
+offset_bottom = 204.0
+mouse_filter = 0
+texture = ExtResource("1_gtjxy")
+expand_mode = 1
+
+[node name="Right" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.25098)
+layout_mode = 0
+offset_left = 68.0
+offset_top = 172.0
+offset_right = 100.0
+offset_bottom = 204.0
+mouse_filter = 0
+texture = ExtResource("1_gtjxy")
+expand_mode = 1
+
+[node name="Down" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.25098)
+layout_mode = 0
+offset_left = 36.0
+offset_top = 204.0
+offset_right = 68.0
+offset_bottom = 236.0
+mouse_filter = 0
+texture = ExtResource("1_gtjxy")
+expand_mode = 1
+
+[node name="Jump" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.25098)
+layout_mode = 0
+offset_left = 284.0
+offset_top = 172.0
+offset_right = 316.0
+offset_bottom = 204.0
+mouse_filter = 0
+texture = ExtResource("1_gtjxy")
+expand_mode = 1
+
+[node name="Dash" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.25098)
+layout_mode = 0
+offset_left = 244.0
+offset_top = 172.0
+offset_right = 276.0
+offset_bottom = 204.0
+mouse_filter = 0
+texture = ExtResource("1_gtjxy")
+expand_mode = 1
+
+[connection signal="gui_input" from="Left" to="." method="_on_left_gui_input"]
+[connection signal="gui_input" from="Right" to="." method="_on_right_gui_input"]
+[connection signal="gui_input" from="Jump" to="." method="_on_jump_gui_input"]

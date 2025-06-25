@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://wfjw4cjrophj"]
+
+[ext_resource type="Script" path="res://Scenes/LevelSelection/level_selection.gd" id="1_564jc"]
+
+[node name="LevelSelection" type="Node2D"]
+script = ExtResource("1_564jc")
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 1.0

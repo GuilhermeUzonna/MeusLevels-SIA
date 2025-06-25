@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbj307ir8d10s"]
+
+[ext_resource type="TileSet" uid="uid://bdnq6o5k8c8ob" path="res://Assets/Resources/Tiles/wall_jump_tilemap.tres" id="1_kn2d6"]
+
+
+[node name="WallJump" type="TileMapLayer" groups=["wall_jump"]]
+tile_set = ExtResource("1_kn2d6")

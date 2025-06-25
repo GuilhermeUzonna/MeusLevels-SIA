@@ -1,0 +1,113 @@
+[gd_scene load_steps=10 format=3 uid="uid://c75lfeadn1xvt"]
+
+[ext_resource type="Script" path="res://Source/BootSplash/boot_splash.gd" id="1_6h6w0"]
+[ext_resource type="Texture2D" uid="uid://2poxo8pkvay4" path="res://Source/BootSplash/Textures/Mad Dev Logo 2.png" id="1_h3ql8"]
+[ext_resource type="Shader" path="res://Assets/Resources/Shaders/shadow_shader.gdshader" id="3_8smp3"]
+[ext_resource type="Shader" path="res://Assets/Resources/Shaders/circle_transition.gdshader" id="4_l7jdk"]
+
+[sub_resource type="Animation" id="Animation_xqyeb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_5vc36"]
+resource_name = "intro"
+length = 4.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 0.7, 3.7, 4.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_julym"]
+_data = {
+"RESET": SubResource("Animation_xqyeb"),
+"intro": SubResource("Animation_5vc36")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w5bat"]
+shader = ExtResource("3_8smp3")
+shader_parameter/pixel_offset = Vector2(1, -1)
+shader_parameter/shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_alpku"]
+shader = ExtResource("4_l7jdk")
+shader_parameter/circle_size = 0.0
+shader_parameter/screen_width = 320.0
+shader_parameter/screen_height = 240.0
+
+[node name="BootSplash" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6h6w0")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.870588, 0.847059, 0.807843, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -23.0
+offset_right = 32.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_h3ql8")
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_julym")
+}
+autoplay = "intro"
+
+[node name="Shader" type="ColorRect" parent="."]
+z_index = 2
+material = SubResource("ShaderMaterial_w5bat")
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 240.0
+
+[node name="Transition" type="ColorRect" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_alpku")
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 240.0
+color = Color(0, 0, 0, 1)
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

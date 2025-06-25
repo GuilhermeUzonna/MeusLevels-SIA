@@ -1,0 +1,505 @@
+[gd_scene load_steps=25 format=4 uid="uid://ctlak33wdua4n"]
+
+[ext_resource type="Script" path="res://Source/Introduction/introduction.gd" id="1_btmxc"]
+[ext_resource type="TileSet" uid="uid://sx23g473e4rb" path="res://Assets/Resources/Tiles/base_tilemap.tres" id="1_f2t0a"]
+[ext_resource type="PackedScene" uid="uid://b37malku2kgpo" path="res://Scenes/Gadgets/Spikes/spikes.tscn" id="2_ky44p"]
+[ext_resource type="Shader" path="res://Assets/Resources/Shaders/shadow_shader.gdshader" id="3_md0cp"]
+[ext_resource type="FontFile" uid="uid://bhm2ik3ij1rpj" path="res://Assets/Fonts/public_pixel.otf" id="4_0y0y1"]
+[ext_resource type="PackedScene" uid="uid://brnpibs68nxk4" path="res://Source/Introduction/IntroCountdown/CountdownCell/countdown_cell.tscn" id="4_5fojh"]
+[ext_resource type="Shader" path="res://Assets/Resources/Shaders/circle_transition.gdshader" id="4_awxav"]
+[ext_resource type="Texture2D" uid="uid://cc3ibp2ailjet" path="res://Scenes/Gadgets/Glider/Textures/glider_sheet.png" id="6_4c8xn"]
+[ext_resource type="Texture2D" uid="uid://dcaf1l3kh7x65" path="res://Scenes/Characters/Player/Textures/player_walk_sheet.png" id="7_7q3pc"]
+[ext_resource type="Texture2D" uid="uid://b5oyu1ago52xq" path="res://Scenes/Characters/Friends/WorldFriend/Textures/glow.png" id="9_efis4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w6quo"]
+shader = ExtResource("3_md0cp")
+shader_parameter/pixel_offset = Vector2(1, -1)
+shader_parameter/shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1upq4"]
+shader = ExtResource("4_awxav")
+shader_parameter/circle_size = 1.0
+shader_parameter/screen_width = 320.0
+shader_parameter/screen_height = 240.0
+
+[sub_resource type="Animation" id="Animation_34tao"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer/Seconds:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["03"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wings:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(160, -8)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HBoxContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Wings:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Steve:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(160, 156)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Steve:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Wings:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Transition:material")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_1upq4")]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Transition:material:shader_parameter/circle_size")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Glow:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jyxtc"]
+resource_name = "introduction_animation"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer/Seconds:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.5, 2.5, 3.5, 4.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["03", "02", "01", "00"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition:material:shader_parameter/circle_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_5pjr6"]
+resource_name = "pick_wings"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Steve:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.21),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(160, 156), Vector2(160, 139)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Steve:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Wings:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.26, 0.39, 0.53, 0.68, 0.81),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 1, 0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_4e1a8"]
+resource_name = "transition_out"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_jq3n8"]
+resource_name = "wings_falling"
+length = 5.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wings:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.759351, 1.75793, 2.73945, 3.7551, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(160, -8), Vector2(165, 1), Vector2(155, 29.265), Vector2(165, 67.732), Vector2(157, 109.787), Vector2(160, 140)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HBoxContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(-0.06, 1.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Wings:rotation")
+tracks/2/interp = 4
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.25, 1.75, 2.25, 2.75, 3.25, 3.75, 4.25, 4.75, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.314159, 0.527089, 0.314159, -0.326377, -0.539307, -0.326377, 0.314159, 0.649262, 0.314159, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Wings:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 4.9993),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Steve:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(4.87343, 5.02),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(160, 156), Vector2(160, 140)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Steve:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(4.87586, 4.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Glow:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(5.01419, 5.05982),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lt73a"]
+_data = {
+"RESET": SubResource("Animation_34tao"),
+"introduction_animation": SubResource("Animation_jyxtc"),
+"pick_wings": SubResource("Animation_5pjr6"),
+"transition_out": SubResource("Animation_4e1a8"),
+"wings_falling": SubResource("Animation_jq3n8")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhvyo"]
+atlas = ExtResource("6_4c8xn")
+region = Rect2(0, 0, 18, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cr2gk"]
+atlas = ExtResource("6_4c8xn")
+region = Rect2(18, 0, 18, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lyeob"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhvyo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cr2gk")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wm6a5"]
+atlas = ExtResource("7_7q3pc")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8s05"]
+atlas = ExtResource("7_7q3pc")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2uo6h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wm6a5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8s05")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Introduction" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_btmxc")
+metadata/_edit_vertical_guides_ = [27.0, 293.0, 160.0, 120.0, 200.0]
+metadata/_edit_horizontal_guides_ = [139.0, 0.0, 35.0, 70.0, 106.0]
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 327.0
+offset_bottom = 242.0
+color = Color(0, 0.815686, 1, 1)
+
+[node name="Mapa" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAADABEAAAAAAAEAAAADABIAAAAAAAIAAAAEABEAAAACAAEAAAAEABIAAAACAAIAAAAjABEAAAAAAAEAAAAjABIAAAAAAAIAAAAkABEAAAACAAEAAAAkABIAAAACAAIAAAAAABQAAAAAAAEAAAAAABUAAAAAAAMAAAABABQAAAABAAEAAAABABUAAAABAAMAAAACABQAAAABAAEAAAACABUAAAABAAMAAAADABMAAAAAAAIAAAADABQAAAAFAAIAAAADABUAAAABAAMAAAAEABMAAAAEAAIAAAAEABQAAAABAAIAAAAEABUAAAABAAMAAAAFABMAAAABAAEAAAAFABQAAAABAAIAAAAFABUAAAABAAMAAAAGABMAAAABAAEAAAAGABQAAAABAAIAAAAGABUAAAABAAMAAAAHABMAAAABAAEAAAAHABQAAAABAAIAAAAHABUAAAABAAMAAAAIABMAAAACAAEAAAAIABQAAAAEAAIAAAAIABUAAAABAAMAAAAJABQAAAABAAEAAAAJABUAAAABAAMAAAAKABQAAAABAAEAAAAKABUAAAABAAMAAAALABQAAAABAAEAAAALABUAAAABAAMAAAAMABQAAAABAAEAAAAMABUAAAABAAMAAAANABQAAAABAAEAAAANABUAAAABAAMAAAAOABQAAAABAAEAAAAOABUAAAABAAMAAAAPABQAAAABAAEAAAAPABUAAAABAAMAAAAQABQAAAABAAEAAAAQABUAAAABAAMAAAARABQAAAABAAEAAAARABUAAAABAAMAAAASABQAAAABAAEAAAASABUAAAABAAMAAAATABQAAAABAAEAAAATABUAAAABAAMAAAAUABQAAAABAAEAAAAUABUAAAABAAMAAAAVABQAAAABAAEAAAAVABUAAAABAAMAAAAWABQAAAABAAEAAAAWABUAAAABAAMAAAAXABQAAAABAAEAAAAXABUAAAABAAMAAAAYABQAAAABAAEAAAAYABUAAAABAAMAAAAZABQAAAABAAEAAAAZABUAAAABAAMAAAAaABQAAAABAAEAAAAaABUAAAABAAMAAAAbABQAAAABAAEAAAAbABUAAAABAAMAAAAcABQAAAABAAEAAAAcABUAAAABAAMAAAAdABQAAAABAAEAAAAdABUAAAABAAMAAAAeABQAAAABAAEAAAAeABUAAAABAAMAAAAfABMAAAAAAAEAAAAfABQAAAAFAAIAAAAfABUAAAABAAMAAAAgABMAAAABAAEAAAAgABQAAAABAAIAAAAgABUAAAABAAMAAAAhABMAAAABAAEAAAAhABQAAAABAAIAAAAhABUAAAABAAMAAAAiABMAAAABAAEAAAAiABQAAAABAAIAAAAiABUAAAABAAMAAAAjABMAAAAFAAIAAAAjABQAAAABAAIAAAAjABUAAAABAAMAAAAkABMAAAACAAIAAAAkABQAAAAEAAIAAAAkABUAAAABAAMAAAAlABQAAAABAAEAAAAlABUAAAABAAMAAAAmABQAAAABAAEAAAAmABUAAAABAAMAAAAnABQAAAACAAEAAAAnABUAAAACAAMAAAA=")
+tile_set = ExtResource("1_f2t0a")
+
+[node name="Spikes" parent="." instance=ExtResource("2_ky44p")]
+tile_map_data = PackedByteArray("AAAAABMAAAAAAAAAAAABABMAAAAAAAAAAAACABMAAAAAAAAAAAAlABMAAAAAAAAAABAmABMAAAAAAAAAABAnABMAAAAAAAAAABA=")
+
+[node name="Shader" type="ColorRect" parent="."]
+z_index = 2
+material = SubResource("ShaderMaterial_w6quo")
+offset_right = 320.0
+offset_bottom = 240.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lt73a")
+}
+autoplay = "introduction_animation"
+next/introduction_animation = &"wings_falling"
+next/pick_wings = &"transition_out"
+next/wings_falling = &"transition_out"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -343.0
+offset_top = 56.0
+offset_right = 665.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(504, 16)
+theme_override_constants/separation = 13
+alignment = 1
+
+[node name="Weeks" parent="HBoxContainer" instance=ExtResource("4_5fojh")]
+visible = false
+layout_mode = 2
+title = "semanas"
+
+[node name="Division" type="Label" parent="HBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_0y0y1")
+text = ":
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Days" parent="HBoxContainer" instance=ExtResource("4_5fojh")]
+layout_mode = 2
+title = "dias"
+
+[node name="Division2" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_0y0y1")
+text = ":
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hours" parent="HBoxContainer" instance=ExtResource("4_5fojh")]
+layout_mode = 2
+title = "horas"
+
+[node name="Division3" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_0y0y1")
+text = ":
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Minutes" parent="HBoxContainer" instance=ExtResource("4_5fojh")]
+layout_mode = 2
+title = "minutos"
+
+[node name="Division4" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_0y0y1")
+text = ":
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Seconds" parent="HBoxContainer" instance=ExtResource("4_5fojh")]
+layout_mode = 2
+text = "03"
+title = "segundos"
+
+[node name="Wings" type="AnimatedSprite2D" parent="."]
+position = Vector2(160, -8)
+sprite_frames = SubResource("SpriteFrames_lyeob")
+animation = &"new_animation"
+frame = 1
+
+[node name="Steve" type="AnimatedSprite2D" parent="."]
+position = Vector2(160, 156)
+sprite_frames = SubResource("SpriteFrames_2uo6h")
+
+[node name="Transition" type="ColorRect" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_1upq4")
+offset_right = 320.0
+offset_bottom = 240.0
+color = Color(0, 0, 0, 1)
+
+[node name="Glow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(160, 139)
+texture = ExtResource("9_efis4")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

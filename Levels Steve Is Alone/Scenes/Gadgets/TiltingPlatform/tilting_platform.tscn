@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://6froqije0kg6"]
+
+[ext_resource type="Script" path="res://Scenes/Gadgets/TiltingPlatform/tilting_platform.gd" id="1_okk2f"]
+[ext_resource type="PackedScene" uid="uid://bslrfmrdcalai" path="res://Scenes/Gadgets/TiltingPlatform/TiltingPlatformCell/tilting_platform_cell.tscn" id="2_77lej"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_twqqv"]
+size = Vector2(2, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_whhs8"]
+size = Vector2(8, 8)
+
+[node name="TiltingPlatform" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_okk2f")
+initial_rotation = null
+
+[node name="StaticBody" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody"]
+shape = SubResource("RectangleShape2D_twqqv")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 10
+
+[node name="CollisionShape2D" parent="RigidBody2D" groups=["keep"] instance=ExtResource("2_77lej")]
+shape = SubResource("RectangleShape2D_whhs8")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+node_a = NodePath("../StaticBody")
+node_b = NodePath("../RigidBody2D")

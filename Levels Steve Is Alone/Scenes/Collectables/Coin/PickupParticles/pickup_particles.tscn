@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2fpcideqktt6"]
+
+[ext_resource type="Texture2D" uid="uid://4qef8n6a8tr7" path="res://Scenes/Gadgets/Ventilator/Textures/single_particle.png" id="1_41ii2"]
+[ext_resource type="Script" path="res://Scenes/Collectables/Coin/PickupParticles/pickup_particles.gd" id="2_jr15f"]
+[ext_resource type="AudioStream" uid="uid://dbmvcnjfndqsl" path="res://Assets/Sounds/Collectables/coin_pickup_placeholder.wav" id="3_5ibdg"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qnwiv"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(2, 3, 1)
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+gravity = Vector3(0, 0, 0)
+
+[node name="pickup_particles" type="GPUParticles2D"]
+texture_filter = 1
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_qnwiv")
+texture = ExtResource("1_41ii2")
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+script = ExtResource("2_jr15f")
+
+[node name="pickup_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_5ibdg")
+volume_db = -3.0
+autoplay = true
+
+[connection signal="finished" from="." to="." method="_on_finished"]

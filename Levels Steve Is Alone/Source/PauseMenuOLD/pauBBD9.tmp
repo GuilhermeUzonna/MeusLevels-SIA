@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1flsoesv8fuv"]
+
+[ext_resource type="Script" path="res://Scenes/Menus/PauseMenu/pause_menu.gd" id="1_q4ob3"]
+[ext_resource type="PackedScene" uid="uid://c4kaqc6v50icy" path="res://Scenes/Menus/PauseMenu/pause_menu_cell.tscn" id="2_848s4"]
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q4ob3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.501961)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = -120.0
+offset_right = 28.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="PauseMenuCell" parent="VBoxContainer" instance=ExtResource("2_848s4")]
+layout_mode = 2
+title = "RETOMAR"
+
+[node name="PauseMenuCell2" parent="VBoxContainer" instance=ExtResource("2_848s4")]
+layout_mode = 2
+title = "SAIR"
